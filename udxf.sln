@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "udxf.Test", "udxf.Test\udxf.Test.csproj", "{0E05398D-E018-44EB-B975-45E0406ED32C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "udxf.Utility", "udxf.Utility\udxf.Utility.csproj", "{799009A1-4D2A-40DE-A9B0-4D9D0371A8D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E05398D-E018-44EB-B975-45E0406ED32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E05398D-E018-44EB-B975-45E0406ED32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E05398D-E018-44EB-B975-45E0406ED32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E05398D-E018-44EB-B975-45E0406ED32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{799009A1-4D2A-40DE-A9B0-4D9D0371A8D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{799009A1-4D2A-40DE-A9B0-4D9D0371A8D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{799009A1-4D2A-40DE-A9B0-4D9D0371A8D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{799009A1-4D2A-40DE-A9B0-4D9D0371A8D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
