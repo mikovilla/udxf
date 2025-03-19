@@ -16,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\udxf.Application\udxf.Application.csproj" />
+    <ProjectReference Include="..\udxf.Domain\udxf.Domain.csproj" />
     <ProjectReference Include="..\udxf.Utility\udxf.Utility.csproj" />
   </ItemGroup>
 

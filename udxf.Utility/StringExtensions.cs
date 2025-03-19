@@ -1,7 +1,5 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Xml;
-using System.Xml.Linq;
 
 namespace udxf.Utility
 {
@@ -10,10 +8,10 @@ namespace udxf.Utility
         public static string CheckFormat(this string data) 
         {
             return data.IsJson() ? "json" : 
-                data.IsXML() ? "xml" : "undefined";
+                data.IsXml() ? "xml" : "undefined";
         }
 
-        public static bool IsXML(this string data)
+        public static bool IsXml(this string data)
         {
             if (string.IsNullOrWhiteSpace(data))
             {
@@ -60,20 +58,15 @@ namespace udxf.Utility
             }
         }
 
-        public static TreeNode UnifiedFormat(this string data)
+        public static object CorrectType(this string input)
         {
-            if (data.IsXML())
-            {
-                return TreeParser.ParseXmlToTree(XElement.Parse(data));
-            }
-            else if (data.IsJson())
-            {
-                return TreeParser.ParseJsonToTree(JsonNode.Parse(data)!);
-            }
-            else
-            {
-                throw new ArgumentException("Cannot be converted to a unified format.");
-            }
+            if (double.TryParse(input, out double intValue))
+                return intValue;
+
+            if (bool.TryParse(input, out bool boolValue))
+                return boolValue;
+
+            return input;
         }
     }
 }
