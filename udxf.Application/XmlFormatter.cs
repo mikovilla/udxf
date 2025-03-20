@@ -5,15 +5,15 @@ namespace udxf.Application
 {
     public class XmlFormatter : Formatter
     {
-        private static XmlFormatter? _xmlParser = null;
+        private static XmlFormatter? _formatter = null;
         private XmlFormatter() { }
         public static XmlFormatter GetInstance()
         {
-            if(_xmlParser == null)
+            if(_formatter == null)
             {
-                _xmlParser = new XmlFormatter();
+                _formatter = new XmlFormatter();
             }
-            return _xmlParser;
+            return _formatter;
         }
 
         protected override TreeNode Parse(INode node)

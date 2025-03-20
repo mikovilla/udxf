@@ -6,14 +6,14 @@ namespace udxf.Application
     public class JsonFormatter : Formatter
     {
         private JsonFormatter() { }
-        private static JsonFormatter? _jsonParser = null;
+        private static JsonFormatter? _formatter = null;
         public static JsonFormatter GetInstance()
         {
-            if(_jsonParser == null)
+            if(_formatter == null)
             {
-                _jsonParser = new JsonFormatter();
+                _formatter = new JsonFormatter();
             }
-            return _jsonParser;
+            return _formatter;
         }
 
         protected override TreeNode Parse(INode node)
