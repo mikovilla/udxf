@@ -1,6 +1,6 @@
 ﻿namespace udxf.Domain
 {
-    public interface IFormatParser
+    public interface IFormatter
     {
         TreeNode Deserialize(INode node);
     }

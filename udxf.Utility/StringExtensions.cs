@@ -90,7 +90,7 @@ namespace udxf.Utility
             }
         }
 
-        public static TreeNode Deserialize(this string data, IFormatParser formatParser)
+        public static TreeNode Deserialize(this string data, IFormatter formatParser)
         {
             return formatParser.Deserialize(data.ToNode());
         }
@@ -99,11 +99,11 @@ namespace udxf.Utility
         {
             if (data.IsXml())
             {
-                return data.Deserialize(XmlParser.GetXmlFormat()).Serialize(formatType);
+                return data.Deserialize(XmlFormatter.GetInstance()).Serialize(formatType);
             }
             else if (data.IsJson())
             {
-                return data.Deserialize(JsonParser.GetJsonFormat()).Serialize(formatType);
+                return data.Deserialize(JsonFormatter.GetInstance()).Serialize(formatType);
             }
             else
             {

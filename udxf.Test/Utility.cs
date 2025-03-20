@@ -20,8 +20,8 @@ namespace udxf.Test
         [InlineData("<person><name>miko</name><age>18</age></person>", "{\"person\":{\"name\":\"miko\",\"age\":18}}")]
         public void ValuesAreInterchangeable_StringToNode(string xml, string json)
         {
-            var xmlFormat = xml.ToNode().Deserialize(XmlParser.GetXmlFormat());
-            var jsonFormat = json.ToNode().Deserialize(JsonParser.GetJsonFormat());
+            var xmlFormat = xml.ToNode().Deserialize(XmlFormatter.GetInstance());
+            var jsonFormat = json.ToNode().Deserialize(JsonFormatter.GetInstance());
             Assert.Equal(xmlFormat.Serialize(FormatType.Json), json);
             Assert.Equal(jsonFormat.Serialize(FormatType.Xml), xml);
         }
@@ -30,8 +30,8 @@ namespace udxf.Test
         [InlineData("<person><name>miko</name><age>18</age></person>", "{\"person\":{\"name\":\"miko\",\"age\":18}}")]
         public void ValuesAreInterchangeable_StringToTree(string xml, string json)
         {
-            var xmlFormat = xml.Deserialize(XmlParser.GetXmlFormat());
-            var jsonFormat = json.Deserialize(JsonParser.GetJsonFormat());
+            var xmlFormat = xml.Deserialize(XmlFormatter.GetInstance());
+            var jsonFormat = json.Deserialize(JsonFormatter.GetInstance());
             Assert.Equal(xmlFormat.Serialize(FormatType.Json), json);
             Assert.Equal(jsonFormat.Serialize(FormatType.Xml), xml);
         }

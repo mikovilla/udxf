@@ -3,27 +3,27 @@ using udxf.Domain;
 
 namespace udxf.Application
 {
-    public class XmlParser : FormatParser
+    public class XmlFormatter : Formatter
     {
-        private static XmlParser? _xmlParser = null;
-        private XmlParser() { }
-        public static XmlParser GetXmlFormat()
+        private static XmlFormatter? _xmlParser = null;
+        private XmlFormatter() { }
+        public static XmlFormatter GetInstance()
         {
             if(_xmlParser == null)
             {
-                _xmlParser = new XmlParser();
+                _xmlParser = new XmlFormatter();
             }
             return _xmlParser;
         }
 
-        protected override TreeNode Convert(INode node)
+        protected override TreeNode Parse(INode node)
         {
             var element = (XElement)node.Node;
             var treeNode = new TreeNode(element.Name.LocalName);
 
             foreach (var child in element.Elements())
             {
-                treeNode.AddChild(Convert(new Domain.XNode { Node = child }));
+                treeNode.AddChild(Parse(new Domain.XNode { Node = child }));
             }
 
             if (!element.HasElements)

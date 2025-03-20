@@ -3,20 +3,20 @@ using udxf.Domain;
 
 namespace udxf.Application
 {
-    public class JsonParser : FormatParser
+    public class JsonFormatter : Formatter
     {
-        private JsonParser() { }
-        private static JsonParser? _jsonParser = null;
-        public static JsonParser GetJsonFormat()
+        private JsonFormatter() { }
+        private static JsonFormatter? _jsonParser = null;
+        public static JsonFormatter GetInstance()
         {
             if(_jsonParser == null)
             {
-                _jsonParser = new JsonParser();
+                _jsonParser = new JsonFormatter();
             }
             return _jsonParser;
         }
 
-        protected override TreeNode Convert(INode node)
+        protected override TreeNode Parse(INode node)
         {
             string nodeName = node.NodeName;
             var nodeValue = node.Node;
@@ -25,7 +25,7 @@ namespace udxf.Application
             {
                 string rootKey = nodeObj.First().Key;
                 JsonNode rootValue = nodeObj[rootKey]!;
-                treeNode = Convert(new JNode { Node = rootValue, NodeName = rootKey });
+                treeNode = Parse(new JNode { Node = rootValue, NodeName = rootKey });
             }
             else
             {
@@ -36,7 +36,7 @@ namespace udxf.Application
 
                         if (property.Value is JsonObject || property.Value is JsonArray)
                         {
-                            treeNode.AddChild(Convert(new JNode { Node = property.Value, NodeName = property.Key }));
+                            treeNode.AddChild(Parse(new JNode { Node = property.Value, NodeName = property.Key }));
                         }
                         else
                         {
@@ -49,7 +49,7 @@ namespace udxf.Application
                     int index = 0;
                     foreach (var item in array)
                     {
-                        treeNode.AddChild(Convert(new JNode { Node = item!, NodeName = $"Item {index++}" }));
+                        treeNode.AddChild(Parse(new JNode { Node = item!, NodeName = $"Item {index++}" }));
                     }
                 }
                 else
