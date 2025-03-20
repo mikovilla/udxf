@@ -2,6 +2,6 @@
 {
     public interface IFormatParser
     {
-        TreeNode ToTree(INode node);
+        TreeNode Deserialize(INode node);
     }
 }

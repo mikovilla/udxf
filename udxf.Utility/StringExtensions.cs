@@ -1,5 +1,8 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Xml;
+using System.Xml.Linq;
+using udxf.Domain;
 
 namespace udxf.Utility
 {
@@ -67,6 +70,27 @@ namespace udxf.Utility
                 return boolValue;
 
             return input;
+        }
+
+        public static INode ToNode(this string data)
+        {
+            if (data.IsJson())
+            {
+                return new JNode { Node = JsonNode.Parse(data)! };
+            }
+            else if (data.IsXml())
+            {
+                return new Domain.XNode { Node = XElement.Parse(data)! };
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        public static TreeNode Deserialize(this string data, IFormatParser formatParser)
+        {
+            return formatParser.Deserialize(data.ToNode());
         }
     }
 }

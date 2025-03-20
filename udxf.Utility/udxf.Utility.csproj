@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <ProjectReference Include="..\udxf.Application\udxf.Application.csproj" />
+    <ProjectReference Include="..\udxf.Domain\udxf.Domain.csproj" />
   </ItemGroup>
 
 </Project>

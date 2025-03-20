@@ -5,6 +5,17 @@ namespace udxf.Application
 {
     public class JsonParser : FormatParser
     {
+        private JsonParser() { }
+        private static JsonParser? _jsonParser = null;
+        public static JsonParser GetJsonFormat()
+        {
+            if(_jsonParser == null)
+            {
+                _jsonParser = new JsonParser();
+            }
+            return _jsonParser;
+        }
+
         protected override TreeNode Convert(INode node)
         {
             string nodeName = node.NodeName;

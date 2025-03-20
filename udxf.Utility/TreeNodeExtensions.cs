@@ -1,46 +1,12 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Xml.Linq;
 using udxf.Domain;
-using udxf.Utility;
 using static udxf.Domain.Enums;
 
-namespace udxf.Application
+namespace udxf.Utility
 {
-    public static class Unify
+    public static class TreeNodeExtensions
     {
-        public static INode GetNode(this string data)
-        {
-            if (data.IsJson())
-            {
-                return new JNode { Node = JsonNode.Parse(data)! };
-            }
-            else if (data.IsXml())
-            {
-                return new Domain.XNode { Node = XElement.Parse(data)! };
-            }
-            else
-            {
-                throw new NotSupportedException();
-            }
-        }
-
-        public static TreeNode Format(this INode node)
-        {
-            if (node is JNode)
-            {
-                return new JsonParser().ToTree(node);
-            }
-            else if (node is Domain.XNode)
-            {
-                return new XmlParser().ToTree(node);
-            }
-            else
-            {
-                throw new NotSupportedException();
-            }
-        }
-
         public static string Serialize(this TreeNode node, FormatType format)
         {
             if (format == FormatType.Json)

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using udxf.Application;
-using udxf.Domain;
+﻿using udxf.Application;
 using udxf.Utility;
 using Xunit;
 using static udxf.Domain.Enums;
@@ -20,28 +18,22 @@ namespace udxf.Test
 
         [Theory]
         [InlineData("<person><name>miko</name><age>18</age></person>", "{\"person\":{\"name\":\"miko\",\"age\":18}}")]
-        public void ValuesAreEqual(string xml, string json)
+        public void ValuesAreInterchangeable_StringToNode(string xml, string json)
         {
-            var jsonNode = Unify.GetNode(json);
-            var xmlNode = Unify.GetNode(xml);
-            Assert.Equal(
-                TreeNodeToString(Unify.Format(xmlNode)), 
-                TreeNodeToString(Unify.Format(jsonNode)));
-        }
-
-        [Theory]
-        [InlineData("<person><name>miko</name><age>18</age></person>", "{\"person\":{\"name\":\"miko\",\"age\":18}}")]
-        public void ValuesAreInterchangeable(string xml, string json)
-        {
-            var xmlFormat = xml.GetNode().Format();
-            var jsonFormat = json.GetNode().Format();
+            var xmlFormat = xml.ToNode().Deserialize(XmlParser.GetXmlFormat());
+            var jsonFormat = json.ToNode().Deserialize(JsonParser.GetJsonFormat());
             Assert.Equal(xmlFormat.Serialize(FormatType.Json), json);
             Assert.Equal(jsonFormat.Serialize(FormatType.Xml), xml);
         }
 
-        private string TreeNodeToString(TreeNode node)
+        [Theory]
+        [InlineData("<person><name>miko</name><age>18</age></person>", "{\"person\":{\"name\":\"miko\",\"age\":18}}")]
+        public void ValuesAreInterchangeable_StringToTree(string xml, string json)
         {
-            return JsonConvert.SerializeObject(node);
+            var xmlFormat = xml.Deserialize(XmlParser.GetXmlFormat());
+            var jsonFormat = json.Deserialize(JsonParser.GetJsonFormat());
+            Assert.Equal(xmlFormat.Serialize(FormatType.Json), json);
+            Assert.Equal(jsonFormat.Serialize(FormatType.Xml), xml);
         }
     }
 }

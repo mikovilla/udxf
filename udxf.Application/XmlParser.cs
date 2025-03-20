@@ -5,6 +5,17 @@ namespace udxf.Application
 {
     public class XmlParser : FormatParser
     {
+        private static XmlParser? _xmlParser = null;
+        private XmlParser() { }
+        public static XmlParser GetXmlFormat()
+        {
+            if(_xmlParser == null)
+            {
+                _xmlParser = new XmlParser();
+            }
+            return _xmlParser;
+        }
+
         protected override TreeNode Convert(INode node)
         {
             var element = (XElement)node.Node;
