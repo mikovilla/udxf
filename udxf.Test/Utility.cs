@@ -35,5 +35,13 @@ namespace udxf.Test
             Assert.Equal(xmlFormat.Serialize(FormatType.Json), json);
             Assert.Equal(jsonFormat.Serialize(FormatType.Xml), xml);
         }
+
+        [Theory]
+        [InlineData("<person><name>miko</name><age>18</age></person>", "{\"person\":{\"name\":\"miko\",\"age\":18}}")]
+        public void ValuesAreInterchangeable_Reserialize(string xml, string json)
+        {
+            Assert.Equal(xml.Reformat(FormatType.Json), json);
+            Assert.Equal(json.Reformat(FormatType.Xml), xml);
+        }
     }
 }

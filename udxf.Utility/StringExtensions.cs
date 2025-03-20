@@ -2,7 +2,9 @@
 using System.Text.Json.Nodes;
 using System.Xml;
 using System.Xml.Linq;
+using udxf.Application;
 using udxf.Domain;
+using static udxf.Domain.Enums;
 
 namespace udxf.Utility
 {
@@ -91,6 +93,22 @@ namespace udxf.Utility
         public static TreeNode Deserialize(this string data, IFormatParser formatParser)
         {
             return formatParser.Deserialize(data.ToNode());
+        }
+
+        public static string Reformat(this string data, FormatType formatType)
+        {
+            if (data.IsXml())
+            {
+                return data.Deserialize(XmlParser.GetXmlFormat()).Serialize(formatType);
+            }
+            else if (data.IsJson())
+            {
+                return data.Deserialize(JsonParser.GetJsonFormat()).Serialize(formatType);
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
         }
     }
 }
