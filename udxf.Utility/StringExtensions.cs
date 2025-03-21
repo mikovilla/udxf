@@ -95,8 +95,13 @@ namespace udxf.Utility
             return formatParser.Deserialize(data.ToNode());
         }
 
-        public static string Reformat(this string data, FormatType formatType)
+        public static string Reformat(this string data, FormatType formatType, (byte[] Key, byte[] IV)? cryptoParam = null)
         {
+            if(cryptoParam != null)
+            {
+                data = data.Decrypt(cryptoParam.Value.Key, cryptoParam.Value.IV);
+            }
+
             if (data.IsXml())
             {
                 return data.Deserialize(XmlFormatter.GetInstance()).Serialize(formatType);
