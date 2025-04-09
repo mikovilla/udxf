@@ -7,24 +7,28 @@ namespace udxf.Utility
 {
     public static class TreeNodeExtensions
     {
-        public static string Serialize(this TreeNode node, FormatType format)
+        public static string Serialize(this TreeNode node, FormatType format, (byte[] Key, byte[] IV)? cryptoParam = null)
         {
+            string serializedData = string.Empty;
+            bool mustEncrypt = (cryptoParam != null && cryptoParam.Value.Key != null && cryptoParam.Value.IV != null);
             if (format == FormatType.Json)
             {
                 var jsonObject = new Dictionary<string, object>()
                 {
                     { node.Name, JsonSerialize(node) }
                 };
-                return JsonSerializer.Serialize(jsonObject);
+                serializedData = JsonSerializer.Serialize(jsonObject);
             }
             else if (format == FormatType.Xml)
             {
-                return XmlSerialize(node).ToString(SaveOptions.DisableFormatting);
+                serializedData = XmlSerialize(node).ToString(SaveOptions.DisableFormatting);
             }
             else
             {
                 throw new NotSupportedException();
             }
+
+            return mustEncrypt ? serializedData.Encrypt(cryptoParam!.Value.Key!, cryptoParam!.Value.IV!) : serializedData;
         }
 
         private static object JsonSerialize(TreeNode node)
