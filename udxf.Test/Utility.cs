@@ -45,8 +45,8 @@ namespace udxf.Test
         [Fact]
         public void ValuesAreInterchangeable_Reserialize()
         {
-            Assert.Equal(xml.Reformat(FormatType.Json), json);
-            Assert.Equal(json.Reformat(FormatType.Xml), xml);
+            Assert.Equal(xml.Reformat(), json);
+            Assert.Equal(json.Reformat(), xml);
         }
 
         [Fact]
@@ -72,7 +72,6 @@ namespace udxf.Test
                 expected: json, 
                 actual:
                     encryptedXml.Reformat(
-                        formatType: FormatType.Json, 
                         cryptoParam: (saltedKey.Key, saltedKey.IV)
                     )
             );

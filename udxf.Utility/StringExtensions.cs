@@ -95,7 +95,7 @@ namespace udxf.Utility
             return formatParser.Deserialize(data.ToNode());
         }
 
-        public static string Reformat(this string data, FormatType formatType, (byte[] Key, byte[] IV)? cryptoParam = null)
+        public static string Reformat(this string data, (byte[] Key, byte[] IV)? cryptoParam = null)
         {
             if(cryptoParam != null)
             {
@@ -104,11 +104,11 @@ namespace udxf.Utility
 
             if (data.IsXml())
             {
-                return data.Deserialize(XmlFormatter.GetInstance()).Serialize(formatType);
+                return data.Deserialize(XmlFormatter.GetInstance()).Serialize(FormatType.Json);
             }
             else if (data.IsJson())
             {
-                return data.Deserialize(JsonFormatter.GetInstance()).Serialize(formatType);
+                return data.Deserialize(JsonFormatter.GetInstance()).Serialize(FormatType.Xml);
             }
             else
             {
