@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "udxf.Domain", "udxf.Domain\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "udxf.Application", "udxf.Application\udxf.Application.csproj", "{619AEEF5-6B58-450A-A41F-F5B6F37758E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "udxf.Api", "udxf.Api\udxf.Api.csproj", "{92B82376-AB74-4785-AA34-E67C538E438B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{619AEEF5-6B58-450A-A41F-F5B6F37758E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{619AEEF5-6B58-450A-A41F-F5B6F37758E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{619AEEF5-6B58-450A-A41F-F5B6F37758E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92B82376-AB74-4785-AA34-E67C538E438B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B82376-AB74-4785-AA34-E67C538E438B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92B82376-AB74-4785-AA34-E67C538E438B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92B82376-AB74-4785-AA34-E67C538E438B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

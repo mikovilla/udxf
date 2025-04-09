@@ -1,0 +1,6 @@
+@udxf.Api_HostAddress = http://localhost:5163
+
+POST {{udxf.Api_HostAddress}}/unifieddata/
+Accept: application/json
+
+###
