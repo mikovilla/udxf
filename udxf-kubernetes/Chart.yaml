@@ -1,0 +1,6 @@
+apiVersion: v2
+name: udxf
+description: A Helm chart for Unified Data Exchange Framework
+type: application
+version: 0.1.0
+appVersion: 8.0

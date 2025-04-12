@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-udxf-api
+  labels:
+    app: {{ .Release.Name }}-udxf-api
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-udxf-api
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-udxf-api
+    spec:
+      containers:
+        - name: udxf-api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+
+---
+
+# Deployment for udxf.Test
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-udxf-test
+  labels:
+    app: {{ .Release.Name }}-udxf-test
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-udxf-test
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-udxf-test
+    spec:
+      containers:
+        - name: udxf-test
+          image: "{{ .Values.testImage.repository }}:{{ .Values.testImage.tag }}"
+          imagePullPolicy: {{ .Values.testImage.pullPolicy }}
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}

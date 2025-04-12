@@ -1,0 +1,27 @@
+# Common values
+image:
+  repository: udxf-api
+  tag: latest
+  pullPolicy: IfNotPresent
+
+testImage:
+  repository: udxf-test
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+  requests:
+    cpu: "250m"
+    memory: "256Mi"
+
+replicaCount: 1
+
+ingress:
+  enabled: false
