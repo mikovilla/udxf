@@ -58,3 +58,34 @@ spec:
             requests:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
+
+---
+
+# Deployment for udxf.Main
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-udxf
+  labels:
+    app: {{ .Release.Name }}-udxf
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-udxf
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-udxf
+    spec:
+      containers:
+        - name: udxf
+          image: "{{ .Values.mainImage.repository }}:{{ .Values.mainImage.tag }}"
+          imagePullPolicy: {{ .Values.mainImage.pullPolicy }}
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}

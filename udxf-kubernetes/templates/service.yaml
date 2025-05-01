@@ -23,3 +23,17 @@ spec:
       targetPort: 8081
   selector:
     app: {{ .Release.Name }}-udxf-test
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-udxf
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 8082
+      targetPort: 8082
+  selector:
+    app: {{ .Release.Name }}-udxf

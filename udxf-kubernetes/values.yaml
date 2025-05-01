@@ -8,6 +8,11 @@ testImage:
   repository: udxf-test
   tag: latest
   pullPolicy: IfNotPresent
+  
+mainImage:
+  repository: udxf
+  tag: latest
+  pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
@@ -15,11 +20,11 @@ service:
 
 resources:
   limits:
-    cpu: "500m"
-    memory: "512Mi"
+    cpu: "1"
+    memory: "1Gi"
   requests:
-    cpu: "250m"
-    memory: "256Mi"
+    cpu: "0.5"
+    memory: "0.5Gi"
 
 replicaCount: 1
 
